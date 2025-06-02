@@ -3,66 +3,418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Minik Kaşifler - ArmsLT</title>
+  <title>Minik Kaşifler</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: linear-gradient(135deg, #fbeee6 0%, #b3e5fc 100%);
-      font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
-      color: #333;
+    :root {
+      --main-bg: linear-gradient(120deg, #fbeee6 0%, #c8e6fa 100%);
+      --section1-bg: linear-gradient(120deg, #fbeee6 0%, #c8e6fa 100%);
+      --section2-bg: linear-gradient(120deg, #e3f6fd 0%, #fbeee6 100%);
+      --section3-bg: linear-gradient(120deg, #fffde7 0%, #e3f6fd 100%);
+      --section4-bg: linear-gradient(120deg, #fbeee6 0%, #fffde7 100%);
+      --section5-bg: linear-gradient(120deg, #e3f6fd 0%, #fbeee6 100%);
+      --primary: #039be5;
+      --accent: #ffd600;
+      --soft-accent: #fffde7;
+      --box-shadow: 0 8px 32px rgba(3,155,229,0.13);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+      --radius-sm: 12px;
+      --section-space: 64px;
+      --transition: 0.18s cubic-bezier(.4,0,.2,1);
+    }
+
+    * {
       margin: 0;
       padding: 0;
-      min-height: 100vh;
+      box-sizing: border-box;
     }
-    .container {
-      max-width: 500px;
-      margin: 60px auto;
-      background: rgba(255,255,255,0.95);
-      border-radius: 18px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-      padding: 32px 24px;
+
+    html, body {
+      background: var(--main-bg);
+      font-family: 'Poppins', Arial, sans-serif;
+      color: #21243d;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    section {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 80px 0;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }
-    h1 {
-      color: #039be5;
-      margin-bottom: 8px;
-      font-size: 2.3em;
+
+    /* Hero Section */
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #039be5 30%, #ffd600 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
     }
-    h2 {
-      color: #ffd600;
-      margin-top: 0;
-      font-size: 1.2em;
-      letter-spacing: 2px;
+
+    .hero-sub {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      letter-spacing: 1.5px;
     }
-    p {
-      font-size: 1.1em;
-      margin-top: 24px;
+
+    /* Feature Cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
     }
-    .team {
-      margin-top: 40px;
-      font-size: 1em;
-      color: #888;
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--box-shadow);
+      transition: transform var(--transition);
     }
-    .emoji {
-      font-size: 2em;
-      margin: 12px 0;
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* App Screenshots */
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 1rem 0;
+      margin: 2rem auto;
+      max-width: 960px;
+      overflow-x: visible;
+      scroll-snap-type: none;
+      justify-items: center;
+    }
+
+    .screenshot {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: var(--radius-md);
+      box-shadow: var(--box-shadow);
+      background-color: #fff;
+      padding: 5px;
+    }
+
+    /* Buttons */
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(90deg, #ffd600 60%, #fffde7 100%);
+      color: var(--primary);
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(255, 214, 0, 0.3);
+      transition: all var(--transition);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 214, 0, 0.4);
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+
+    /* Footer */
+    .footer {
+      background: white;
+      padding: 2rem 0;
+      text-align: center;
+      color: #666;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .screenshots {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        max-width: 760px;
+      }
+
+      .screenshot {
+        max-width: 240px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .screenshots {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 300px;
+      }
+
+      .screenshot {
+        max-width: 280px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeIn 0.6s ease-out forwards;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Minik Kaşifler</h1>
-    <h2>ArmsLT Takımı</h2>
-    <div class="emoji">🗺️🧭✨</div>
-    <p>
-      Minik Kaşifler, ilkokul çağındaki çocuklar için geliştirilmiş eğlenceli ve eğitici bir artırılmış gerçeklik (AR) uygulamasıdır.<br>
-      Çocuklar, sanal görevler ve interaktif haritalar sayesinde hem keşfetmeyi öğrenir hem de oyun oynayarak yeni bilgiler edinir.<br>
-      Projemiz, çocukların hayal gücünü ve merak duygusunu desteklerken, takım çalışması ve problem çözme becerilerini de geliştirir.
-    </p>
-    <div class="team">
-      <strong>Takım:</strong> ArmsLT<br>
-      <strong>Proje:</strong> Minik Kaşifler<br>
-      <strong>Seviye:</strong> İlköğretim (i.ö)
+  <header class="header">
+    <nav class="nav-container">
+      <a href="#" class="logo">Minik Kaşifler</a>
+      <ul class="nav-links">
+        <li><a href="#hero">Ana Sayfa</a></li>
+        <li><a href="#features">Özellikler</a></li>
+        <li><a href="#screenshots">Ekranlar</a></li>
+        <li><a href="#download">İndir</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="section hero-bg">
+    <div class="section-inner animate-in">
+      <h1 class="hero-title">Minik Kaşifler</h1>
+      <h2 class="hero-sub">Dünyayı Keşfetmeye Hazır mısın?</h2>
+      <div class="emoji">🗺️🧭✨📱</div>
+      <img src="images/app-placeholder.png" alt="Uygulama Ekran Görüntüsü" class="hero-img" onerror="this.style.display='none'">
+      <a href="#download" class="cta-btn">Hemen İndir</a>
     </div>
-  </div>
+  </section>
+
+  <section id="features" class="section flow-bg">
+    <div class="section-inner">
+      <h2 class="section-title">Macera Başlıyor!</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">👋</div>
+          <h3>Hoş Geldin</h3>
+          <p>Uygulamaya kolay ve eğlenceli bir başlangıç yaparak maceraya adım at!</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧑‍🚀</div>
+          <h3>Karakterini Oluştur</h3>
+          <p>Hayalindeki kaşif karakterini çeşitli seçeneklerle tasarla ve özelleştir.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎒</div>
+          <h3>Ekipmanlarını Seç</h3>
+          <p>Sanal Dürbün, Sihirli Pusula ve maceran için gerekli özel ekipmanları topla.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚲</div>
+          <h3>Keşif Aracını Seç</h3>
+          <p>Şehri ve dünyayı keşfetmek için Uçak, Roket, veya Sihirli Halı gibi birbirinden farklı araçlardan birini seç!</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Kaşif Yemini</h3>
+          <p>Minik Kaşifler topluluğuna katıl, Kaşif Yeminini et ve takım ruhunu hisset!</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🗺️</div>
+          <h3>Haritayı Keşfet</h3>
+          <p>AR teknolojisi ile gerçek dünyada gizli görevleri ve eğlenceli oyun alanlarını keşfet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screenshots" class="section avatar-bg">
+    <div class="section-inner">
+      <h2 class="section-title">Uygulama Ekranları</h2>
+      <div class="screenshots">
+        <img src="images/IMG-20250524-WA0004.jpg" alt="Hoş Geldin Ekranı" class="screenshot">
+        <img src="images/IMG-20250524-WA0011.jpg" alt="Avatar Oluşturma Ekranı" class="screenshot">
+        <img src="images/IMG-20250524-WA0005.jpg" alt="Ekipman Seçme Ekranı" class="screenshot">
+        <img src="images/IMG-20250524-WA0009.jpg" alt="Araç Seçme Ekranı" class="screenshot">
+        <img src="images/IMG-20250524-WA0010.jpg" alt="Kaşif Yemini Ekranı" class="screenshot">
+        <img src="images/IMG-20250524-WA0012.jpg" alt="Sertifika Ekranı" class="screenshot">
+      </div>
+    </div>
+  </section>
+
+  <section id="games" class="section equipment-bg">
+    <div class="section-inner">
+      <h2 class="section-title">Eğlenceli Oyunlar ve Ödüllü Görevler</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <h3>Mini Oyunlar</h3>
+          <p>Problem çözme, bulmacalar ve boyama gibi eğitici ve eğlenceli mini oyunlarla öğren.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Ödüllü Görevler</h3>
+          <p>Haritada ve gerçek dünyada verilen heyecanlı görevleri tamamla, özel rozetler ve başarılar kazan!</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Takım Çalışması</h3>
+          <p>Arkadaşlarınla birlikte görevleri tamamla, bilgi paylaşımı yap ve keşfetme heyecanını ikiye katla.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>AR Deneyimi</h3>
+          <p>Artırılmış gerçeklik teknolojisi ile çevreni keşfet, interaktif öğrenme deneyimi yaşa ve sanal dünyayı gerçeklikle birleştir!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ar-exploration" class="section section4-bg">
+    <div class="section-inner">
+      <h2 class="section-title">Artırılmış Gerçeklik ile Keşif</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px;">
+        Minik Kaşifler, artırılmış gerçeklik (AR) teknolojisini kullanarak çocukların
+        gerçek dünyayı eğlenceli ve interaktif bir şekilde keşfetmesini sağlar. Çevrenizdeki
+        mekanlarda gizlenmiş sanal objeleri bulun, tarihi yapıları 3D modelleriyle yakından
+        inceleyin ve öğrenin. Macera hiç bitmez!
+      </p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Gizli Objeleri Bul</h3>
+          <p>Gerçek dünyada artırılmış gerçeklikle gizlenmiş ipuçlarını ve objeleri keşfet.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏛️</div>
+          <h3>3D Yapıları Keşfet</h3>
+          <p>Ünlü binaların ve yapıların detaylı 3D modellerini AR ile gör, bilgi edin.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>İnteraktif Öğrenme</h3>
+          <p>AR görevleri sayesinde eğlenerek yeni bilgiler öğren ve kendini geliştir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="section map-bg">
+    <div class="section-inner">
+      <h2 class="section-title">Hemen İndir</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px;">
+        Minik Kaşifler uygulamasını hemen indir ve dünyanın kapılarını arala! Eğlenceli oyunlar, 
+        eğitici görevler ve AR teknolojisi ile dolu unutulmaz bir macera seni bekliyor.
+      </p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <a href="#" class="cta-btn">App Store'dan İndir</a>
+        <a href="#" class="cta-btn">Google Play'den İndir</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="section-inner">
+      <p>&copy; 2024 Minik Kaşifler. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
 </body>
 </html>
